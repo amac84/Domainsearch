@@ -1,0 +1,12 @@
+{
+  "name": "domainsearch",
+  "private": true,
+  "scripts": {
+    "dev": "cd domainsearch-app && npm run dev",
+    "build": "cd domainsearch-app && npm run build",
+    "start": "cd domainsearch-app && npm run start",
+    "lint": "cd domainsearch-app && npm run lint",
+    "deploy": "cd domainsearch-app && npx --yes vercel@latest deploy --prod --yes",
+    "deploy:preview": "cd domainsearch-app && npx --yes vercel@latest deploy --yes"
+  }
+}

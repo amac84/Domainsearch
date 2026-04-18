@@ -1,0 +1,3 @@
+[submodule "domainsearch-app"]
+	path = domainsearch-app
+	url = https://github.com/amac84/domainsearch-app.git
