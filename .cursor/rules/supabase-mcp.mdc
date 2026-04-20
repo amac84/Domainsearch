@@ -1,0 +1,26 @@
+---
+description: Prefer Supabase MCP for database, schema, and platform changes
+globs: "**/supabase/**/*,**/lib/supabase/**/*"
+alwaysApply: false
+---
+
+# Supabase work — use MCP first
+
+When the task involves **Supabase** (Postgres schema, migrations, RLS, SQL, branches, advisors, logs, Edge Functions, Auth, Storage, or Realtime), use the **Supabase MCP** tools instead of improvising from memory or editing the database only through local files.
+
+## Do this
+
+- **Discover operations via MCP**: list available Supabase MCP tools and read their schemas before calling; use the correct tool names and arguments for this workspace’s MCP server (often configured as `supabase` in `.cursor/mcp.json`).
+- **Schema and data changes**: apply migrations, run SQL, inspect tables/columns, and validate policies through MCP when the server exposes those capabilities.
+- **Safety**: prefer dry-run or preview flows when offered; avoid destructive operations without explicit user confirmation.
+- **Project linking**: if MCP reports missing project or auth, fix configuration (Supabase MCP + access token / project ref) rather than bypassing with unsafe shortcuts.
+
+## Avoid this
+
+- Guessing DDL, RLS, or Auth behavior without checking the live project or MCP-backed metadata.
+- Treating edited SQL files under `supabase/migrations` as “done” without an apply/deploy step when the user asked for the database to change.
+- Putting service role keys or long-lived secrets in rules, chat, or committed files — use env vars and MCP-managed access only.
+
+## Setup note
+
+If Supabase MCP is not available in the session, add it in **Cursor Settings → Tools & MCP** or in `.cursor/mcp.json` / user `mcp.json`, then reload. Follow [Supabase MCP](https://supabase.com/docs/guides/getting-started/mcp) (hosted `https://mcp.supabase.com/mcp` with OAuth, or local CLI `http://localhost:54321/mcp` when developing locally). Do not silently substitute unrelated tools for database changes.
